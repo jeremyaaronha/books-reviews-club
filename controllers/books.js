@@ -20,3 +20,42 @@ exports.getBookById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+
+
+
+
+// PUT book by ID
+exports.updateBookById = async (req, res) => {
+  try {
+    const updatedBook = await bookModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    res.json(updatedBook);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// DELETE book by ID
+exports.deleteBookById = async (req, res) => {
+  try {
+    const deletedBook = await bookModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    res.json({ message: 'Book deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

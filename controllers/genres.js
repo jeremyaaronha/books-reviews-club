@@ -20,3 +20,46 @@ exports.getGenreById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+
+
+
+
+
+
+
+
+// PUT genre by ID
+exports.updateGenreById = async (req, res) => {
+  try {
+    const updatedGenre = await genreModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedGenre) {
+      return res.status(404).json({ message: 'Genre not found' });
+    }
+
+    res.json(updatedGenre);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// DELETE genre by ID
+exports.deleteGenreById = async (req, res) => {
+  try {
+    const deletedGenre = await genreModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedGenre) {
+      return res.status(404).json({ message: 'Genre not found' });
+    }
+
+    res.json({ message: 'Genre deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
