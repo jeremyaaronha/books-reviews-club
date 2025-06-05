@@ -1,0 +1,94 @@
+// /routes/reviews.js
+const express = require('express');
+const router = express.Router();
+const reviews = require('../controllers/reviews');
+
+/**
+ * @swagger
+ * tags:
+ *   name: Reviews
+ *   description: Review management
+ */
+
+/**
+ * @swagger
+ * /reviews:
+ *   get:
+ *     summary: Get all reviews
+ *     tags: [Reviews]
+ *     responses:
+ *       200:
+ *         description: List of reviews
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Review'
+ */
+router.get('/', reviews.getAllReviews);
+
+/**
+ * @swagger
+ * /reviews/{id}:
+ *   get:
+ *     summary: Get review by ID
+ *     tags: [Reviews]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Review ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Review found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Review'
+ *       404:
+ *         description: Review not found
+ */
+router.get('/:id', reviews.getReviewById);
+
+/**
+ * @swagger
+ * /reviews/book/{bookId}:
+ *   get:
+ *     summary: Get reviews by Book ID
+ *     tags: [Reviews]
+ *     parameters:
+ *       - in: path
+ *         name: bookId
+ *         required: true
+ *         description: Book ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: List of reviews for the book
+ */
+router.get('/book/:bookId', reviews.getReviewsByBook);
+
+/**
+ * @swagger
+ * /reviews/user/{userId}:
+ *   get:
+ *     summary: Get reviews by User ID
+ *     tags: [Reviews]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         description: User ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: List of reviews by the user
+ */
+router.get('/user/:userId', reviews.getReviewsByUser);
+
+module.exports = router;

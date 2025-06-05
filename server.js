@@ -9,6 +9,9 @@ const GitHubStrategy = require('passport-github2').Strategy;
 const { initDb } = require('./data/database');
 const booksRoutes = require('./routes/books');
 const reviewsRoutes = require('./routes/reviews'); 
+const usersRoutes = require('./routes/users');
+const genresRoutes = require('./routes/genres');
+
 const { swaggerUi, swaggerSpec } = require('./swagger');
 const { isAuthenticated } = require('./middleware/authenticate');
 
@@ -65,8 +68,10 @@ passport.deserializeUser((obj, done) => {
 });
 
 // Routes (protegidas)
-app.use('/books', isAuthenticated, booksRoutes);
-app.use('/reviews', isAuthenticated, reviewsRoutes);
+app.use('/books', booksRoutes);
+app.use('/reviews', reviewsRoutes);
+app.use('/users', usersRoutes);
+app.use('/genres', genresRoutes);
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
