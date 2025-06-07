@@ -20,3 +20,16 @@ exports.getGenreById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// POST create new genre
+exports.createGenre = async (req, res) => {
+  try {
+    const genre = new genreModel({
+      name: req.body.name
+    });
+    const newGenre = await genre.save();
+    res.status(201).json(newGenre);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};

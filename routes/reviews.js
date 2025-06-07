@@ -25,8 +25,48 @@ const reviews = require('../controllers/reviews');
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Review'
+ *   post:
+ *     summary: Create a new review
+ *     tags: [Reviews]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - book
+ *               - user
+ *               - rating
+ *             properties:
+ *               book:
+ *                 type: string
+ *                 description: The book ID (ObjectId reference)
+ *               user:
+ *                 type: string
+ *                 description: The user ID (ObjectId reference)
+ *               rating:
+ *                 type: number
+ *                 minimum: 0
+ *                 maximum: 5
+ *                 description: Review rating (0-5)
+ *               comment:
+ *                 type: string
+ *                 description: Review comment (optional)
+ *     responses:
+ *       201:
+ *         description: Review created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Review'
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
  */
 router.get('/', reviews.getAllReviews);
+router.post('/', reviews.createReview);
 
 /**
  * @swagger

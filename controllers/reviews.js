@@ -48,3 +48,20 @@ exports.getReviewsByUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// POST create new review
+exports.createReview = async (req, res) => {
+  try {
+    const review = new reviewModel({
+      book: req.body.book,
+      user: req.body.user,
+      rating: req.body.rating,
+      comment: req.body.comment
+    });
+    const newReview = await review.save();
+    await newReview.populate(['book', 'user']);
+    res.status(201).json(newReview);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};

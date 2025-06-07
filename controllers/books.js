@@ -20,3 +20,23 @@ exports.getBookById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// POST create new book
+exports.createBook = async (req, res) => {
+  try {
+    const book = new bookModel({
+      title: req.body.title,
+      author: req.body.author,
+      genre: req.body.genre,
+      pages: req.body.pages,
+      publishedDate: req.body.publishedDate,
+      isbn: req.body.isbn,
+      rating: req.body.rating
+    });
+    const newBook = await book.save();
+    await newBook.populate('genre');
+    res.status(201).json(newBook);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};

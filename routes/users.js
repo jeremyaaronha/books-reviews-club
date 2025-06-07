@@ -24,8 +24,39 @@ const users = require('../controllers/users');
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/User'
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - email
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The user's username
+ *               email:
+ *                 type: string
+ *                 description: The user's email address
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
  */
 router.get('/', users.getAllUsers);
+router.post('/', users.createUser);
 
 /**
  * @swagger
