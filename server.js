@@ -33,6 +33,7 @@ app.use(session({
   secret: 'supersecretkey',
   resave: false,
   saveUninitialized: false,
+  proxy: true,
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URL,
     ttl: 14 * 24 * 60 * 60
