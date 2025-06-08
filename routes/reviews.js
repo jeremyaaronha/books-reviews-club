@@ -66,7 +66,7 @@ const reviews = require('../controllers/reviews');
  *         description: Internal server error
  */
 router.get('/', reviews.getAllReviews);
-router.post('/', reviews.createReview);
+router.post('/', isAuthenticated, reviews.createReview);
 
 /**
  * @swagger

@@ -56,7 +56,7 @@ const users = require('../controllers/users');
  *         description: Internal server error
  */
 router.get('/', users.getAllUsers);
-router.post('/', users.createUser);
+router.post('/', isAuthenticated, users.createUser);
 
 /**
  * @swagger

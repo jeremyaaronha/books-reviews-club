@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const books = require('../controllers/books');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 /**
  * @swagger
@@ -76,7 +77,7 @@ const books = require('../controllers/books');
  *         description: Internal server error
  */
 router.get('/', books.getAllBooks);
-router.post('/', books.createBook);
+router.post('/', isAuthenticated, books.createBook);
 
 /**
  * @swagger

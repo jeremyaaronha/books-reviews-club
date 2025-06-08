@@ -52,7 +52,7 @@ const genres = require('../controllers/genres');
  *         description: Internal server error
  */
 router.get('/', genres.getAllGenres);
-router.post('/', genres.createGenre);
+router.post('/', isAuthenticated, genres.createGenre);
 
 /**
  * @swagger
