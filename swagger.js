@@ -11,8 +11,12 @@ const swaggerDefinition = {
   },
   servers: [
     {
+      url: 'https://books-reviews-club.onrender.com',
+      description: 'Production (Render)'
+    },
+    {
       url: 'http://localhost:3000',
-      description: 'Local server'
+      description: 'Local (Development)'
     }
   ],
   components: {
