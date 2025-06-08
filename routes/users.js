@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const users = require('../controllers/users');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 /**
  * @swagger

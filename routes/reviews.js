@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const reviews = require('../controllers/reviews');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 /**
  * @swagger
