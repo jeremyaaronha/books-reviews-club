@@ -22,8 +22,8 @@ const port = process.env.PORT || 3000;
 
 // CORS
 app.use(cors({
-  origin: 'https://DOMINIO_RENDER', 
-  credentials: true
+    origin: 'https://books-reviews-club.onrender.com',
+    credentials: true
 }));
 
 app.use(express.json());
