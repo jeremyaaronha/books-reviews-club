@@ -22,8 +22,8 @@ const port = process.env.PORT || 3000;
 
 // CORS
 app.use(cors({
-  origin: 'https://DOMINIO_RENDER', 
-  credentials: true
+    origin: 'https://books-reviews-club.onrender.com',
+    credentials: true
 }));
 
 app.use(express.json());
@@ -33,6 +33,7 @@ app.use(session({
   secret: 'supersecretkey',
   resave: false,
   saveUninitialized: false,
+  proxy: true,
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URL,
     ttl: 14 * 24 * 60 * 60
@@ -40,7 +41,7 @@ app.use(session({
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    sameSite: 'none'
+    sameSite: 'lax'
   }
 }));
 

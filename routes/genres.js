@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const genres = require('../controllers/genres');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 /**
  * @swagger
@@ -24,8 +25,35 @@ const genres = require('../controllers/genres');
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Genre'
+ *   post:
+ *     summary: Create a new genre
+ *     tags: [Genres]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The genre name
+ *     responses:
+ *       201:
+ *         description: Genre created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Genre'
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
  */
 router.get('/', genres.getAllGenres);
+router.post('/', isAuthenticated, genres.createGenre);
 
 /**
  * @swagger
