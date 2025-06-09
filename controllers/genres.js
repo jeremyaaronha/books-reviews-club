@@ -54,7 +54,7 @@ exports.deleteGenreById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-=======
+
 // POST create new genre
 exports.createGenre = async (req, res) => {
   try {
