@@ -54,7 +54,7 @@ exports.deleteUserById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-=======
+
 // POST create new user
 exports.createUser = async (req, res) => {
   try {

@@ -85,16 +85,6 @@ router.post('/', isAuthenticated, users.createUser);
 router.get('/:id', users.getUserById);
 
 
-
-
-
-
-
-
-
-
-
-
 /**
  * @swagger
  * /users/{id}:
@@ -126,7 +116,7 @@ router.get('/:id', users.getUserById);
  *       404:
  *         description: User not found
  */
-router.put('/:id', users.updateUserById);
+router.put('/:id', isAuthenticated, users.updateUserById);
 
 /**
  * @swagger
@@ -147,7 +137,7 @@ router.put('/:id', users.updateUserById);
  *       404:
  *         description: User not found
  */
-router.delete('/:id', users.deleteUserById);
+router.delete('/:id', isAuthenticated, users.deleteUserById);
 
 
 module.exports = router;
