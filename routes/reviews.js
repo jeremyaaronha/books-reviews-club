@@ -132,4 +132,69 @@ router.get('/book/:bookId', reviews.getReviewsByBook);
  */
 router.get('/user/:userId', reviews.getReviewsByUser);
 
+
+
+
+
+
+
+
+
+
+
+/**
+ * @swagger
+ * /reviews/{id}:
+ *   put:
+ *     summary: Update a review by ID
+ *     tags: [Reviews]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Review ID
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Review'
+ *     responses:
+ *       200:
+ *         description: Review updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Review'
+ *       400:
+ *         description: Invalid data
+ *       404:
+ *         description: Review not found
+ */
+router.put('/:id', reviews.updateReviewById);
+
+/**
+ * @swagger
+ * /reviews/{id}:
+ *   delete:
+ *     summary: Delete a review by ID
+ *     tags: [Reviews]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Review ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Review deleted successfully
+ *       404:
+ *         description: Review not found
+ */
+router.delete('/:id', reviews.deleteReviewById);
+
+
 module.exports = router;

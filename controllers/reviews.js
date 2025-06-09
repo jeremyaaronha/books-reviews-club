@@ -49,6 +49,40 @@ exports.getReviewsByUser = async (req, res) => {
   }
 };
 
+// PUT review by ID
+exports.updateReviewById = async (req, res) => {
+  try {
+    const updatedReview = await reviewModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    ).populate('book').populate('user');
+
+    if (!updatedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+
+    res.json(updatedReview);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// DELETE review by ID
+exports.deleteReviewById = async (req, res) => {
+  try {
+    const deletedReview = await reviewModel.findByIdAndDelete(req.params.id);
+
+    if (!deletedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+
+    res.json({ message: 'Review deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+=======
 // POST create new review
 exports.createReview = async (req, res) => {
   try {
