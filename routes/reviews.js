@@ -133,15 +133,6 @@ router.get('/book/:bookId', reviews.getReviewsByBook);
 router.get('/user/:userId', reviews.getReviewsByUser);
 
 
-
-
-
-
-
-
-
-
-
 /**
  * @swagger
  * /reviews/{id}:
@@ -173,7 +164,7 @@ router.get('/user/:userId', reviews.getReviewsByUser);
  *       404:
  *         description: Review not found
  */
-router.put('/:id', reviews.updateReviewById);
+router.put('/:id', isAuthenticated, reviews.updateReviewById);
 
 /**
  * @swagger
@@ -194,7 +185,7 @@ router.put('/:id', reviews.updateReviewById);
  *       404:
  *         description: Review not found
  */
-router.delete('/:id', reviews.deleteReviewById);
+router.delete('/:id', isAuthenticated, reviews.deleteReviewById);
 
 
 module.exports = router;

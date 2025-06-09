@@ -117,7 +117,7 @@ router.get('/:id', genres.getGenreById);
  *       404:
  *         description: Genre not found
  */
-router.put('/:id', genres.updateGenreById);
+router.put('/:id', isAuthenticated, genres.updateGenreById);
 
 /**
  * @swagger
@@ -138,7 +138,7 @@ router.put('/:id', genres.updateGenreById);
  *       404:
  *         description: Genre not found
  */
-router.delete('/:id', genres.deleteGenreById);
+router.delete('/:id', isAuthenticated, genres.deleteGenreById);
 
 
 module.exports = router;

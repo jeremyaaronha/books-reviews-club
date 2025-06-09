@@ -141,7 +141,7 @@ router.get('/:id', books.getBookById);
  *       404:
  *         description: Book not found
  */
-router.put('/:id', books.updateBookById);
+router.put('/:id', isAuthenticated, books.updateBookById);
 
 /**
  * @swagger
@@ -162,6 +162,6 @@ router.put('/:id', books.updateBookById);
  *       404:
  *         description: Book not found
  */
-router.delete('/:id', books.deleteBookById);
+router.delete('/:id', isAuthenticated, books.deleteBookById);
 
 module.exports = router;
