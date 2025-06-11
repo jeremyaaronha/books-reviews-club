@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const users = require('../controllers/users');
 const { isAuthenticated } = require('../middleware/authenticate');
+const validateUser = require('../helpers/validateUser');
 
 /**
  * @swagger
@@ -57,7 +58,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
  *         description: Internal server error
  */
 router.get('/', users.getAllUsers);
-router.post('/', isAuthenticated, users.createUser);
+router.post('/', isAuthenticated, validateUser, users.createUser);
 
 /**
  * @swagger
@@ -116,7 +117,7 @@ router.get('/:id', users.getUserById);
  *       404:
  *         description: User not found
  */
-router.put('/:id', isAuthenticated, users.updateUserById);
+router.put('/:id', isAuthenticated, validateUser, users.updateUserById);
 
 /**
  * @swagger
