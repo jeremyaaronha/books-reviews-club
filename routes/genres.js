@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const genres = require('../controllers/genres');
 const { isAuthenticated } = require('../middleware/authenticate');
+const validateGenre = require('../helpers/validateGenre');
+
 
 /**
  * @swagger
@@ -53,7 +55,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
  *         description: Internal server error
  */
 router.get('/', genres.getAllGenres);
-router.post('/', isAuthenticated, genres.createGenre);
+router.post('/', isAuthenticated, validateGenre, genres.createGenre);
 
 /**
  * @swagger
@@ -79,12 +81,6 @@ router.post('/', isAuthenticated, genres.createGenre);
  *         description: Genre not found
  */
 router.get('/:id', genres.getGenreById);
-
-
-
-
-
-
 
 
 
@@ -117,7 +113,7 @@ router.get('/:id', genres.getGenreById);
  *       404:
  *         description: Genre not found
  */
-router.put('/:id', isAuthenticated, genres.updateGenreById);
+router.put('/:id', isAuthenticated, validateGenre, genres.updateGenreById);
 
 /**
  * @swagger
