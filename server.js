@@ -103,8 +103,12 @@ app.get('/logout', (req, res, next) => {
 
 // Start
 initDb().then(() => {
-  app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-    console.log(`Swagger docs at http://localhost:${port}/api-docs`);
+    if (process.env.NODE_ENV !== 'test') {
+      app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
+        console.log(`Swagger docs at http://localhost:${port}/api-docs`);
+      });
+    }
   });
-});
+  
+  module.exports = app;
