@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const books = require('../controllers/books');
 const { isAuthenticated } = require('../middleware/authenticate');
+const validateBook = require('../helpers/validateBook');
 
 /**
  * @swagger
@@ -77,7 +78,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
  *         description: Internal server error
  */
 router.get('/', books.getAllBooks);
-router.post('/', isAuthenticated, books.createBook);
+router.post('/', isAuthenticated, validateBook, books.createBook);
 
 /**
  * @swagger
@@ -141,7 +142,7 @@ router.get('/:id', books.getBookById);
  *       404:
  *         description: Book not found
  */
-router.put('/:id', isAuthenticated, books.updateBookById);
+router.put('/:id', isAuthenticated, validateBook, books.updateBookById);
 
 /**
  * @swagger

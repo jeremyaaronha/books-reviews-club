@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const reviews = require('../controllers/reviews');
 const { isAuthenticated } = require('../middleware/authenticate');
+const validateReview = require('../helpers/validateReview');
 
 /**
  * @swagger
@@ -67,7 +68,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
  *         description: Internal server error
  */
 router.get('/', reviews.getAllReviews);
-router.post('/', isAuthenticated, reviews.createReview);
+router.post('/', isAuthenticated, validateReview, reviews.createReview);
 
 /**
  * @swagger
@@ -164,7 +165,7 @@ router.get('/user/:userId', reviews.getReviewsByUser);
  *       404:
  *         description: Review not found
  */
-router.put('/:id', isAuthenticated, reviews.updateReviewById);
+router.put('/:id', isAuthenticated, validateReview, reviews.updateReviewById);
 
 /**
  * @swagger
