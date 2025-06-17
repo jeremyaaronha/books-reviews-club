@@ -61,7 +61,7 @@ const validateReview = require('../helpers/validateReview');
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Review'
+ *               $ref: '#/components/schemas/ReviewUpdate'
  *       400:
  *         description: Bad request
  *       500:
