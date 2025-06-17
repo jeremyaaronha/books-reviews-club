@@ -104,7 +104,7 @@ router.get('/:id', users.getUserById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: '#/components/schemas/UserUpdate'
  *     responses:
  *       200:
  *         description: User updated successfully
@@ -139,6 +139,32 @@ router.put('/:id', isAuthenticated, validateUser, users.updateUserById);
  *         description: User not found
  */
 router.delete('/:id', isAuthenticated, users.deleteUserById);
+
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         username:
+ *           type: string
+ *         email:
+ *           type: string
+ *     UserUpdate:
+ *       type: object
+ *       required:
+ *         - username
+ *         - email
+ *       properties:
+ *         username:
+ *           type: string
+ *         email:
+ *           type: string
+ */
 
 
 module.exports = router;
