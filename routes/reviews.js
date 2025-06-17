@@ -152,7 +152,7 @@ router.get('/user/:userId', reviews.getReviewsByUser);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Review'
+ *             $ref: '#/components/schemas/ReviewUpdate'
  *     responses:
  *       200:
  *         description: Review updated successfully
@@ -188,5 +188,40 @@ router.put('/:id', isAuthenticated, validateReview, reviews.updateReviewById);
  */
 router.delete('/:id', isAuthenticated, reviews.deleteReviewById);
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     ReviewUpdate:
+ *       type: object
+ *       required:
+ *         - book
+ *         - user
+ *         - rating
+ *         - comment
+ *       properties:
+ *         book:
+ *           type: object
+ *           required:
+ *             - _id
+ *           properties:
+ *             _id:
+ *               type: string
+ *               description: ID of the book
+ *         user:
+ *           type: object
+ *           required:
+ *             - _id
+ *           properties:
+ *             _id:
+ *               type: string
+ *               description: ID of the user
+ *         rating:
+ *           type: number
+ *           description: Rating value
+ *         comment:
+ *           type: string
+ *           description: User comment on the book
+ */
 
 module.exports = router;
