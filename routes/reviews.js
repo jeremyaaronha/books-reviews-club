@@ -26,7 +26,7 @@ const validateReview = require('../helpers/validateReview');
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Review'
+ *                 $ref: '#/components/schemas/ReviewUpdate'
  *   post:
  *     summary: Create a new review
  *     tags: [Reviews]
