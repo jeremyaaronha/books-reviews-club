@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 const reviewSchema = Joi.object({
     book: Joi.object({
       _id: Joi.string()
