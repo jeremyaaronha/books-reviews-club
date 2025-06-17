@@ -35,26 +35,7 @@ const validateReview = require('../helpers/validateReview');
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - book
- *               - user
- *               - rating
- *             properties:
- *               book:
- *                 type: string
- *                 description: The book ID (ObjectId reference)
- *               user:
- *                 type: string
- *                 description: The user ID (ObjectId reference)
- *               rating:
- *                 type: number
- *                 minimum: 0
- *                 maximum: 5
- *                 description: Review rating (0-5)
- *               comment:
- *                 type: string
- *                 description: Review comment (optional)
+ *             $ref: '#/components/schemas/ReviewUpdate'
  *     responses:
  *       201:
  *         description: Review created successfully
